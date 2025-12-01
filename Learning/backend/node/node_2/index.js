@@ -1,9 +1,19 @@
-// import chalk from 'chalk';
+const fs = require('fs');
 
-// console.log(chalk.blue("Hello World"));
-// console.log(chalk.red.bold("Hello World!"));
-// console.log(chalk.green.underline("Hello World!"));
+function main(filename){
+    fs.readFile(filename, "utf-8", function(err , data){
+        
+        // let total = 0;
+        // for(let i = 0; i< data.length;i++){
+        //     if(data[i] === " "){
+        //         total++;
+        //     }
+        // }
+        // console.log(total+1);
 
+        const words = data.split(' ').length;
+        console.log(`There are ${words} words in the ${filename} file`);
+    })
+}
 
-
-console.log(__dirname);
+main(process.argv[2]);
