@@ -1,0 +1,1 @@
+Express.js is used to create server and also create backend application.

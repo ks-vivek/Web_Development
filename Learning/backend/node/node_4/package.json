@@ -1,11 +1,10 @@
 {
-  "name": "p",
+  "name": "node_4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon app3.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,11 +12,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
   }
 }
-``
