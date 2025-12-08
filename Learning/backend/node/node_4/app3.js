@@ -26,15 +26,15 @@ const app = express();
         })
     }
 })
-// app.use(middleware);
+app.use(middleware);
 
-app.get("/ride1" , middleware ,  (req , res)=>{
+app.get("/ride1"  ,  (req , res)=>{
         res.status(200).json({
             msg: "You have successfully riden the ride 1"
         })
 })
 
-app.get("/ride2" ,middleware,  (req , res)=>{
+app.get("/ride2" ,  (req , res)=>{
         res.status(200).json({
             msg: "You have successfully riden the ride 2"
         })
