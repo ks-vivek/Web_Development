@@ -1,0 +1,1 @@
+Middleware is used for authentication purpose
