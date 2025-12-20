@@ -43,7 +43,7 @@ for(let i = 0; i< users.length; i++){
 if(foundUser){
     const token = generateToken()
     foundUser.token= token;
-    res.json({
+    res.status(200).json({
         token:token
     })
 }else{
@@ -64,20 +64,20 @@ app.get('/me', (req, res)=>{
     let foundUser = null;
 
 for(let i = 0; i < users.length; i++)
-    if(users[i].token == token){
-        foundUser = users[i];
-    }
-    if(foundUser){
-        res.json({
+      if(users[i].token == token){
+        foundUser = users[i]; 
+      }
+        if(foundUser){
+        res.status(200).json({
             username : foundUser.username,
             password : foundUser.password
-        })
+        }) 
         }
         else{
-            res.json({
+            res.status(401).json({
                 message:"Invalid Token"
             })
-    }
+        }
 })
 
 const PORT = 3001;
