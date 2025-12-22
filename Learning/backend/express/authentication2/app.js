@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt= require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
@@ -17,16 +18,34 @@ app.get("/", (req, res)=>{
     res.json({
         message: "learning bcrypt"
     })
-})
+});
 
 app.get("/read", (req, res)=>{
     console.log(req.cookies)
     res.send("READ ROUTE");
-})
+});
 
+app.get("/compare", (req, res)=>{
+    bcrypt.compare("Password@123", "$2b$10$O9M726zXdKvxipbPWN7lCOkV16D.0ynao47boxKIlK7CfatD2jRHi"
+, function(err, result) {
+    console.log(result);
+   });
+});
 
+app.get("/jwt", (req, res)=>{
+    let token = jwt.sign({email: "harsh@example.com", role: "user"}, "secret", {expiresIn: "1h"});
+    console.log(token);
+    res.cookie('token' , token);
+    res.send("jwt")
+});
+
+app.get("/verify", (req, res)=>{
+  let data = jwt.verify(req.cookies.token , "secret");
+  console.log(data);
+
+});
 
 const PORT = 3001;
 app.listen(PORT , ()=>{
     console.log(`Server is listening on http://localhost:${PORT}`)
-})
+});
