@@ -4,7 +4,9 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 
-app.use(cookieParser())
+app.use(cookieParser());
+
+const jwt_secret = "123";
 
 app.get("/", (req, res)=>{
     const saltrounds = 10;
@@ -33,14 +35,14 @@ app.get("/compare", (req, res)=>{
 });
 
 app.get("/jwt", (req, res)=>{
-    let token = jwt.sign({email: "harsh@example.com", role: "user"}, "secret", {expiresIn: "1h"});
+    let token = jwt.sign({email: "harsh@example.com", role: "user"}, jwt_secret, {expiresIn: "10sec"});
     console.log(token);
     res.cookie('token' , token);
     res.send("jwt")
 });
 
 app.get("/verify", (req, res)=>{
-  let data = jwt.verify(req.cookies.token , "secret");
+  let data = jwt.verify(req.cookies.token , jwt_secret);
   console.log(data);
 
 });
