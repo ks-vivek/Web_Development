@@ -17,18 +17,38 @@
       alert("You are Signed Up");
     }
 
-     async function signin() {
-      const username = document.getElementById("signin-username").value;
-      const password = document.getElementById("signin-password").value;
-      await axios.post("http://localhost:3001/signin", {
-        username: username,
-        password: password,
-      });
+    async function signin() {
+  const username = document.getElementById("signin-username").value;
+  const password = document.getElementById("signin-password").value;
 
-      localStorage.setItem("token", response.data.token);
+  const response = await axios.post("http://localhost:3001/signin", {
+    username: username,
+    password: password,
+  });
+
+  localStorage.setItem("token", response.data.token);
+
+  alert("You are Signed in");
+};
+
+async function getUserInformation(){
+  const response = await axios.get("http://localhost:3001/me", {
+    headers: {
+       authorization: localStorage.getItem("token")
       
-      alert("You are Signed in ");
     }
+  })
+  document.getElementById("information").innerHTML = "Username: " + response.data.username + "  " +  "Password: " + response.data.password
+}
+ getUserInformation();
+
+ function logout() {
+  localStorage.removeItem("token");
+  document.getElementById("information").innerHTML = "";
+  alert("Logged out successfully");
+}
+
+
   </script>
 </head>
 

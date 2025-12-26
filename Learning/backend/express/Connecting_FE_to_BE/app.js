@@ -74,7 +74,7 @@ const auth = ((req, res, next)=>{
 
 app.get("/me", auth,  (req, res)=>{
      const user = users.find(u=> u.username == req.username);
-
+     
     if(user){
         res.status(200).json({
             username: user.username,
